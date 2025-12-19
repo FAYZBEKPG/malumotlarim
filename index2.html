@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaxsiy Ma'lumotlar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s;
+        }
+
+        .info-row:hover {
+            transform: translateX(5px);
+        }
+
+        .info-row .label {
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .info-row .value {
+            color: #333;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .stat-box .number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-box .label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            display: none;
+            text-align: center;
+            color: #1976d2;
+            font-weight: bold;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>👤 Shaxsiy Profil</h1>
+
+        <div id="info-container"></div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <div class="number" id="yosh"></div>
+                <div class="label">Yosh</div>
+            </div>
+            <div class="stat-box">
+                <div class="number" id="tajriba"></div>
+                <div class="label">Yillik Tajriba</div>
+            </div>
+        </div>
+
+        <button onclick="malumotKorsat()">📊 To'liq Ma'lumot</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // ============================================
+        // SHAXSIY MA'LUMOTLAR (const va let)
+        // ============================================
+
+        console.log("🚀 Dastur boshlandi!");
+        console.log("📅 Vaqt:", new Date().toLocaleString('uz-UZ'));
+
+        // ========== CONST - O'zgarmas ma'lumotlar ==========
+        const ISM = "Fayzbek";
+        const FAMILIYA = "Isoqov";
+        const TUGILGAN_YILI = 2012;
+        const SHAHAR = "Surxandaryo";
+        const EMAIL = "fayzbek@example.com";
+        const TELEFON = "+998 953481855";
+        const MAMLAKAT = "O'zbekiston";
+
+        console.log("\n====== KONSTANTALAR ======");
+        console.log("Ism:", ISM);
+        console.log("Familiya:", FAMILIYA);
+        console.log("Tug'ilgan yili:", TUGILGAN_YILI);
+        console.log("========================\n");
+
+        // ========== LET - O'zgaruvchan ma'lumotlar ==========
+        let hozirgiYil = 2024;
+        let yosh = hozirgiYil - TUGILGAN_YILI;
+        let kasb = "Frontend Developer";
+        let tajriba = 3;
+        let maosh = 15000000;
+        let aktiv = true;
+
+        console.log("====== O'ZGARUVCHILAR ======");
+        console.log("Hozirgi yil:", hozirgiYil);
+        console.log("Yosh:", yosh);
+        console.log("Kasb:", kasb);
+        console.log("Tajriba:", tajriba, "yil");
+        console.log("===========================\n");
+
+        // ============================================
+        // MA'LUMOTLARNI SAHIFAGA CHIQARISH
+        // ============================================
+
+        // Shaxsiy ma'lumotlar
+        document.getElementById('info-container').innerHTML = `
+            <div class="info-row">
+                <span class="label">👤 To'liq ism:</span>
+                <span class="value">${ISM} ${FAMILIYA}</span>
+            </div>
+            <div class="info-row">
+           index4.html
+           !     <span class="label">🏙️ Shahar:</span>
+                <span class="value">${SHAHAR}, ${MAMLAKAT}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">💼 Kasb:</span>
+                <span class="value">${kasb}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">📧 Email:</span>
+                <span class="value">${EMAIL}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">📱 Telefon:</span>
+                <span class="value">${TELEFON}</span>
+            </div>
+        `;
+
+        // Statistika
+        document.getElementById('yosh').textContent = yosh;
+        document.getElementById('tajriba').textContent = tajriba;
+
+        // ============================================
+        // HISOBLAB CHIQARISH FUNKSIYASI
+        // ============================================
+
+        function malumotKorsat() {
+            console.log("\n===== HISOBLASHLAR =====");
+
+            // Yillik daromad
+            let yillikDaromad = maosh * 12;
+            console.log("Oylik maosh:", maosh.toLocaleString());
+            console.log("Yillik daromad:", yillikDaromad.toLocaleString());
+
+            // Keyingi yilda yosh
+            let keyingiYildaYosh = yosh + 1;
+            console.log("Keyingi yilda:", keyingiYildaYosh, "yosh");
+
+            // Tajribaga asoslanib daraja
+            let daraja;
+            if (tajriba < 2) {
+                daraja = "Junior";
+            } else if (tajriba < 5) {
+                daraja = "Middle";
+            } else {
+                daraja = "Senior";
+            }
+            console.log("Daraja:", daraja);
+
+            // Natijani sahifaga chiqarish
+            let resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                📊 <strong>Statistika:</strong><br>
+                💰 Yillik daromad: ${yillikDaromad.toLocaleString()} so'm<br>
+                🎂 Keyingi yilda: ${keyingiYildaYosh} yosh<br>
+                ⭐ Daraja: ${daraja} Developer<br>
+                ✅ Status: ${aktiv ? "Aktiv" : "Noaktiv"}
+            `;
+
+            console.log("=======================\n");
+        }
+
+        // ============================================
+        // let VA const FARQINI KO'RSATISH
+        // ============================================
+
+        console.log("=== let va const FARQI ===\n");
+
+        // ✅ let - o'zgarishi mumkin
+        let balans = 1000000;
+        console.log("1. Boshlang'ich balans:", balans.toLocaleString());
+
+        balans = balans + 500000;
+        console.log("2. +500000:", balans.toLocaleString());
+
+        balans = balans - 300000;
+        console.log("3. -300000:", balans.toLocaleString());
+
+        // ✅ const - o'zgarmas
+        const BANK = "Milliy Bank";
+        const VALYUTA = "UZS";
+        console.log("\nBank:", BANK);
+        console.log("Valyuta:", VALYUTA);
+
+        // ❌ const ni o'zgartirib bo'lmaydi
+        // BANK = "Boshqa bank";  // Error!
+
+        console.log("\n=========================\n");
+
+        // O'zgaruvchilar haqida ma'lumot
+        console.log("📋 O'zgaruvchilar ro'yxati:");
+        console.log("const:", "ISM, FAMILIYA, TUGILGAN_YILI, SHAHAR, EMAIL");
+        console.log("let:", "yosh, kasb, tajriba, maosh, balans");
+
+        console.log("\n✅ Dastur muvaffaqiyatli yuklandi!");
+    </script>
+</body>
+</html>
+
+</body>
+</html>

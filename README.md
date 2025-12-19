@@ -1,0 +1,2 @@
+# malumotlarim
+men haqimda malumot
